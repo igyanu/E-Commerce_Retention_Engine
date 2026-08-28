@@ -44,10 +44,11 @@ The **Power BI Dashboard** translates complex retention metrics into executive-l
 * **Low Breadth Analysis:** Pinpointing single-category purchasers (`Distinct Product <= 5`) for targeted cross-sell campaigns.
 ---
 
+```
 ## 📂 Project Structure
 ├── data/                  # Raw & cleaned transaction data
 ├── sql/                   # SQL feature engineering & RFM scoring pipeline
 ├── notebooks/             # Data cleaning, EDA, & ML model training
 ├── dashboard/             # Power BI report (.pbix) & assets
 └── README.md              # Project documentation
-
+```
