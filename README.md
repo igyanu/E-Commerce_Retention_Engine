@@ -4,11 +4,11 @@ An end-to-end analytics and machine learning solution designed to identify churn
 
 ---
 
-## 📌 Executive Summary
+## 📌 Actionable Summary
 Customer churn directly impacts revenue growth. This project builds an automated pipeline to extract customer behavior features, compute RFM metrics, train predictive models, and surface real-time actionable insights via an interactive **Power BI Executive Dashboard**.
 
 * **Dataset:** 1M+ raw transaction records
-* **Revenue at Risk Identified:** **$2.30M** across **1K high-risk customers**
+* **Revenue at Risk Identified:** **$2.30M** across **1.15K high-risk customers**
 * **Average Recency Ratio:** **2.57x** above individual baseline repurchase windows
 
 ---
@@ -23,8 +23,8 @@ Customer churn directly impacts revenue growth. This project builds an automated
 ### 2. Feature Engineering & RFM Scoring
 * RecencyRatio: RecencyDays	/ AvgIPTDays — Flags customers exceeding their normal repeat purchase interval.
 * IsAtRisk Flag: Binary indicator triggered when RecencyRatio > 2.0.
-* OrderVolumeTrend: Ratio of recent 60-day spend vs. historical annualized run-rate.
-* RFM Segmentation: Quintile scoring (`NTILE(5)`) for **Recency** (DESC), **Frequency** (ASC), and **Monetary** (ASC) to generate `RFM_Cell` segments (e.g., `555` = Champions).
+* OrderVolumeTrend: Ratio of recent 60-day spend vs. historical 60day purchase-rate.
+* RFM Segmentation: Quintile scoring (`NTILE(5)`) for **Recency** (DESC), **Frequency** (ASC), and **Monetary** (ASC) to generate `M_Score` segments (e.g., `5` = Champions).
 
 ## 📈 Model Performance
 
@@ -37,7 +37,7 @@ Train/Validation/Test split: 80/10/10, stratified via random_state
 |---------------------|---------------------|--------------------|
 | Precision           | 0.98                | 0.85               |
 | Recall              | 0.98                | 0.86               |
-| F1-score             | 0.98                | 0.86               |
+| F1-score            | 0.98                | 0.86               |
 
 - **ROC-AUC:** 0.986
 - **Overall Accuracy:** 96% (874 held-out customers)
@@ -60,11 +60,15 @@ The **Power BI Dashboard** translates complex retention metrics into executive-l
 * **High-Level Financial Performance:** Generated **$19.10M in total revenue** across **39.24K orders**, averaging **$486.69 per order** with a typical basket size of **275 items**.
 * **Seasonal Revenue Growth:** Demonstrated strong year-end revenue momentum, accelerating from a baseline of $1.0M–$1.5M per month to a peak of **$2.8M in November**.
 * **Top Product Drivers:** Sales volume was dominated by fast-moving items, led by **World War 2 Gliders** (105.75K units) and **Jumbo Bag Red Retrospot** (96.26K units).
+  <img width="788" height="446" alt="image" src="https://github.com/user-attachments/assets/62cb5042-2b06-419b-9153-a3fb15fd5415" />
+
   
 * **KPI Cards:** Top-line visibility into **Total Revenue at Risk ($2.30M)**, **At-Risk Customer Count (1K)**, and **Avg Recency Ratio (2.57)**.
 * **Revenue at Risk by Tier:** Segmentation breakdown showing **$1.50M** at risk in **Champions**, **$0.75M** in **Loyals**, and **$0.05M** in **Low Spenders**.
-* **High-Value At-Risk Table:** Immediate visibility into top spending customers with elevated churn probabilities (e.g., ID `12377` with $3.26K spend and 0.45 churn probability).
-* **Low Breadth Analysis:** Pinpointing single-category purchasers (`Distinct Product <= 5`) for targeted cross-sell campaigns.
+* **High-Value At-Risk Table:** Immediate visibility into top spending customers( `M_Score >= 4 | F_Score > 4) with estimated churn probabilities`) (e.g., ID `12377` with $3.26K spend and 0.45 churn probability).
+* **Low Breadth Analysis:** Pinpointing single-category purchasers (`Distinct Product <= 5 and F_Score > 1 and Recency Ratio < 3`) for targeted cross-sell campaigns.
+* <img width="782" height="448" alt="Actionable Insights" src="https://github.com/user-attachments/assets/d385faa9-70a8-456b-a655-405d85f6ce70" />
+
 ---
 
 ```
