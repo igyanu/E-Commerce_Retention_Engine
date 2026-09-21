@@ -35,18 +35,13 @@ Train/Validation/Test split: 80/10/10, stratified via random_state
 
 | Metric              | Class 0 (Retained) | Class 1 (Churned) |
 |---------------------|---------------------|--------------------|
-| Precision           | 0.98                | 0.85               |
-| Recall              | 0.98                | 0.86               |
-| F1-score            | 0.98                | 0.86               |
+| Precision           | 0.98                | 0.88               |
+| Recall              | 0.97                | 0.92               |
+| F1-score            | 0.98                | 0.90               |
 
-- **ROC-AUC:** 0.986
+- **ROC-AUC:** 0.9891
 - **Overall Accuracy:** 96% (874 held-out customers)
-- **Decision threshold:** 0.20 (lowered from default 0.5) — deliberately biased toward
-  catching more true churners (higher recall) since the cost of missing an at-risk
-  high-value customer outweighs the cost of a slightly wasted retention offer.
-- **Class imbalance handling:** `scale_pos_weight=0.25` applied to account for
-  the minority churn class.
-
+- 
 Note: the model was retrained on the full dataset (using the optimal number of
 boosting rounds found via early stopping) before being deployed for scoring —
 this is standard practice for maximizing training data usage in production, but
